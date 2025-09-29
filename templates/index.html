@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie Recommender</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f7f7;}
+            h1 { color: #333;}
+            form { margin-bottom: 1rem;}
+            input[type="text"]{
+                padding: 0.5rem; width: 300px; border-radius: 5px; border: 1px solid #ccc;
+            }
+            button{
+                padding: 0.5rem 1rem; border: none; border-radius: 5px; background: #007BFF; color: white; cursor: pointer;
+            }
+            button.hover {background: #0056b3;}
+            ul { list-style: none; padding: 0;}
+            li { background: white; margin: 0.3rem 0; padding: 0.5rem; border-radius: 5px;}
+        </style>
+    </head>
+    <body>
+        <h1> 🎬 Movie Recommendation Application </h1>
+        <form method="POST">
+            <label for="title">Enter a Movie Title</label><br><br>
+            <input type="text" id="title" name="title" placeholder="e.g. Toy Story (1995)" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if query %}
+            <h2>Results for "{{ query }}":</h2>
+            {% if recommendations %}
+                <ul>
+                    {% for movie in recommendations %}
+                        <li>{{ movie }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No Recommendations Found. Check the Spelling</p>
+            {% endif %}
+        {% endif %}
+
+    </body>
+</html>
