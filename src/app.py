@@ -21,7 +21,7 @@ def recommendByTitle(title, top_n=5):
     movieIndicies = [i[0] for i in simScores]
     return movies["title"].iloc[movieIndicies].tolist()
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates")
 
 @app.route("/", methods = ["GET", "POST"])
 
@@ -31,7 +31,7 @@ def index():
     if request.method == "POST":
         query = request.form["title"]
         recommendations = recommendByTitle(query, top_n=5)
-    return render_template("templates/index.html", query=query, recommendations=recommendations)
+    return render_template("index.html", query=query, recommendations=recommendations)
 
 if __name__ ==  "__main__":
     app.run(debug=True) 
